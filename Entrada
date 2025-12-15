@@ -1,0 +1,35 @@
+import model.Moeda;
+import service.ConversorService;
+import util.TaxaCambioUtil;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        ConversorService conversorService = new ConversorService();
+
+        System.out.print("Digite o valor: ");
+        double valor = scanner.nextDouble();
+
+        System.out.print("Moeda de origem (BRL, USD, EUR): ");
+        String origemCodigo = scanner.next();
+
+        System.out.print("Moeda de destino (BRL, USD, EUR): ");
+        String destinoCodigo = scanner.next();
+
+        Moeda origem = TaxaCambioUtil.obterMoeda(origemCodigo);
+        Moeda destino = TaxaCambioUtil.obterMoeda(destinoCodigo);
+
+        if (origem == null || destino == null) {
+            System.out.println("Moeda inválida.");
+        } else {
+            double resultado = conversorService.converter(valor, origem, destino);
+            System.out.printf("Valor convertido: %.2f %s%n", resultado, destino.getCodigo());
+        }
+
+        scanner.close();
+    }
+}
