@@ -1,0 +1,20 @@
+package model;
+
+public class Moeda {
+
+    private String codigo;
+    private double taxaEmReal;
+
+    public Moeda(String codigo, double taxaEmReal) {
+        this.codigo = codigo;
+        this.taxaEmReal = taxaEmReal;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public double getTaxaEmReal() {
+        return taxaEmReal;
+    }
+}
