@@ -1,0 +1,33 @@
+package com.rebeca.conversor.controller;
+
+import com.rebeca.conversor.model.Moeda;
+import com.rebeca.conversor.service.ConversorService;
+import com.rebeca.conversor.util.TaxaCambioUtil;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/conversao")
+public class ConversorController {
+
+    private final ConversorService conversorService;
+
+    public ConversorController(ConversorService conversorService) {
+        this.conversorService = conversorService;
+    }
+
+    @GetMapping
+    public double converter(
+            @RequestParam double valor,
+            @RequestParam String origem,
+            @RequestParam String destino
+    ) {
+        Moeda moedaOrigem = TaxaCambioUtil.obterMoeda(origem);
+        Moeda moedaDestino = TaxaCambioUtil.obterMoeda(destino);
+
+        if (moedaOrigem == null || moedaDestino == null) {
+            throw new IllegalArgumentException("Moeda inválida");
+        }
+
+        return conversorService.converter(valor, moedaOrigem, moedaDestino);
+    }
+}
