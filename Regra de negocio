@@ -1,0 +1,13 @@
+package com.rebeca.conversor.service;
+
+import com.rebeca.conversor.model.Moeda;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConversorService {
+
+    public double converter(double valor, Moeda origem, Moeda destino) {
+        double valorEmReal = valor * origem.getTaxaEmReal();
+        return valorEmReal / destino.getTaxaEmReal();
+    }
+}
