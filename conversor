@@ -1,0 +1,15 @@
+package service;
+
+import model.Moeda;
+
+public class ConversorService {
+
+    public double converter(double valor, Moeda origem, Moeda destino) {
+
+        // Converte o valor para Real
+        double valorEmReal = valor * origem.getTaxaEmReal();
+
+        // Converte do Real para a moeda destino
+        return valorEmReal / destino.getTaxaEmReal();
+    }
+}
