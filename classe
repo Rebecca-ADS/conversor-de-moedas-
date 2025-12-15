@@ -1,0 +1,20 @@
+package util;
+
+import model.Moeda;
+
+public class TaxaCambioUtil {
+
+    public static Moeda obterMoeda(String codigo) {
+
+        switch (codigo.toUpperCase()) {
+            case "BRL":
+                return new Moeda("BRL", 1.0);
+            case "USD":
+                return new Moeda("USD", 5.0);
+            case "EUR":
+                return new Moeda("EUR", 5.5);
+            default:
+                return null;
+        }
+    }
+}
